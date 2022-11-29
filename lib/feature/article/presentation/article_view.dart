@@ -1,4 +1,4 @@
-import 'package:bloc_project/feature/article/infrastructure/article_functions.dart';
+
 import 'package:bloc_project/feature/article/presentation/article_bloc/article_bloc.dart';
 import 'package:bloc_project/feature/article/presentation/widgets/result_list.dart';
 import 'package:flutter/material.dart';

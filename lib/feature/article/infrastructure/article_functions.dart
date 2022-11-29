@@ -10,12 +10,12 @@ import 'package:injectable/injectable.dart';
 class ArticleFunctions implements ArticleService{
   @override
   Future<List<Datum>> fetchArticleList({required String query})async {
-    print("clicked");
+    log("clicked");
     try {
       final response = await Dio(BaseOptions()).get(
        'https://api.kodeco.com/api/contents'
       );
-       log(response.data.toString());
+      // log(response.data.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
        final result =  SearchResultModel.fromJson(response.data);
        return result.data;

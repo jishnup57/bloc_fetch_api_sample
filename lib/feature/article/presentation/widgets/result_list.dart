@@ -16,7 +16,13 @@ class ResultList extends StatelessWidget {
           return const Center(child: Text('No Results'));
         }
         else {
-          return Center(child: Text(state.articleList[0].id.toString()));
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ListView.separated(itemBuilder: (context, index) {
+              final item = state.articleList[index];
+              return Text(item.id.toString());
+            }, separatorBuilder: (context, index) => const Divider(), itemCount: state.articleList.length),
+          );
         }
       },
     );

@@ -1,7 +1,8 @@
 import 'dart:developer';
 
-import 'package:bloc/bloc.dart';
+
 import 'package:bloc_project/feature/article/domain/model/search_result_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -18,7 +19,7 @@ class ArticleBloc extends Bloc<ArticleEvent, ArticleState> {
    on<SearchArticle>((event, emit) async {
     log('Article Bloc called');
      if (state.articleList.isNotEmpty) {
-       emit(state.copyWith(isLoading: state.isLoading,articleList: state.articleList ));
+       emit(state.copyWith(isLoading: false,articleList: state.articleList ));
        return;
      }
      emit(state.copyWith(isLoading: true,articleList: []));
