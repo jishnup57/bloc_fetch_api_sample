@@ -37,7 +37,7 @@ class ArticleListScreen extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: IconButton(onPressed: (){
-                    context.read<ArticleBloc>().add(const SearchArticle());
+                    context.read<ArticleBloc>().add(const SearchArticle(query: ''));
                   }, icon: const Icon(Icons.search)))
               ],
             ),

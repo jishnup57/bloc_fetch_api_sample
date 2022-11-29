@@ -7,23 +7,28 @@ class ResultList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  BlocBuilder<ArticleBloc, ArticleState>(
+    return BlocBuilder<ArticleBloc, ArticleState>(
       builder: (context, state) {
         if (state.isLoading) {
-          return const Center(child: CircularProgressIndicator(strokeWidth: 2,),);
-        }
-        else if(state.articleList.isEmpty){
+          return const Center(
+            child: CircularProgressIndicator(
+              strokeWidth: 2,
+            ),
+          );
+        } else if (state.articleList.isEmpty) {
           return const Center(child: Text('No Results'));
         }
-        else {
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ListView.separated(itemBuilder: (context, index) {
-              final item = state.articleList[index];
-              return Text(item.id.toString());
-            }, separatorBuilder: (context, index) => const Divider(), itemCount: state.articleList.length),
-          );
-        }
+
+        return Padding(
+          padding: const EdgeInsets.all(.0),
+          child: ListView.separated(
+              itemBuilder: (context, index) {
+                final item = state.articleList[index];
+                return Text(item.id.toString());
+              },
+              separatorBuilder: (context, index) => const Divider(),
+              itemCount: state.articleList.length),
+        );
       },
     );
   }

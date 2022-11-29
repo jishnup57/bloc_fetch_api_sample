@@ -16,14 +16,17 @@ part 'article_bloc.freezed.dart';
 class ArticleBloc extends Bloc<ArticleEvent, ArticleState> {
   ArticleFunctions articleFun;
   ArticleBloc(this.articleFun) : super(ArticleState.initial()) {
+   on<Initialize>((event, emit) {
+     return emit(state.copyWith(isLoading: true,articleList: []));
+   });
    on<SearchArticle>((event, emit) async {
     log('Article Bloc called');
-     if (state.articleList.isNotEmpty) {
-       emit(state.copyWith(isLoading: false,articleList: state.articleList ));
-       return;
-     }
+    //  if (state.articleList.isNotEmpty) {
+    //    emit(state.copyWith(isLoading: false,articleList: state.articleList ));
+    //    return;
+    //  }
      emit(state.copyWith(isLoading: true,articleList: []));
-     List<Datum> articleNewList = await articleFun.fetchArticleList(query: '');
+     List<Datum> articleNewList = await articleFun.fetchArticleList(query: event.query);
      return emit(state.copyWith(isLoading: false,articleList:articleNewList));
    });
   }

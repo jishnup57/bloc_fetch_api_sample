@@ -18,38 +18,38 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ArticleEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function() searchArticle,
+    required TResult Function() initialize,
+    required TResult Function(String query) searchArticle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function()? searchArticle,
+    TResult? Function()? initialize,
+    TResult? Function(String query)? searchArticle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? searchArticle,
+    TResult Function()? initialize,
+    TResult Function(String query)? searchArticle,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(Initialize value) initialize,
     required TResult Function(SearchArticle value) searchArticle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(Initialize value)? initialize,
     TResult? Function(SearchArticle value)? searchArticle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(Initialize value)? initialize,
     TResult Function(SearchArticle value)? searchArticle,
     required TResult orElse(),
   }) =>
@@ -75,34 +75,35 @@ class _$ArticleEventCopyWithImpl<$Res, $Val extends ArticleEvent>
 }
 
 /// @nodoc
-abstract class _$$_StartedCopyWith<$Res> {
-  factory _$$_StartedCopyWith(
-          _$_Started value, $Res Function(_$_Started) then) =
-      __$$_StartedCopyWithImpl<$Res>;
+abstract class _$$InitializeCopyWith<$Res> {
+  factory _$$InitializeCopyWith(
+          _$Initialize value, $Res Function(_$Initialize) then) =
+      __$$InitializeCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_StartedCopyWithImpl<$Res>
-    extends _$ArticleEventCopyWithImpl<$Res, _$_Started>
-    implements _$$_StartedCopyWith<$Res> {
-  __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
+class __$$InitializeCopyWithImpl<$Res>
+    extends _$ArticleEventCopyWithImpl<$Res, _$Initialize>
+    implements _$$InitializeCopyWith<$Res> {
+  __$$InitializeCopyWithImpl(
+      _$Initialize _value, $Res Function(_$Initialize) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Started implements _Started {
-  const _$_Started();
+class _$Initialize implements Initialize {
+  const _$Initialize();
 
   @override
   String toString() {
-    return 'ArticleEvent.started()';
+    return 'ArticleEvent.initialize()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Started);
+        (other.runtimeType == runtimeType && other is _$Initialize);
   }
 
   @override
@@ -111,30 +112,30 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function() searchArticle,
+    required TResult Function() initialize,
+    required TResult Function(String query) searchArticle,
   }) {
-    return started();
+    return initialize();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function()? searchArticle,
+    TResult? Function()? initialize,
+    TResult? Function(String query)? searchArticle,
   }) {
-    return started?.call();
+    return initialize?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? searchArticle,
+    TResult Function()? initialize,
+    TResult Function(String query)? searchArticle,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started();
+    if (initialize != null) {
+      return initialize();
     }
     return orElse();
   }
@@ -142,37 +143,37 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(Initialize value) initialize,
     required TResult Function(SearchArticle value) searchArticle,
   }) {
-    return started(this);
+    return initialize(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(Initialize value)? initialize,
     TResult? Function(SearchArticle value)? searchArticle,
   }) {
-    return started?.call(this);
+    return initialize?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(Initialize value)? initialize,
     TResult Function(SearchArticle value)? searchArticle,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (initialize != null) {
+      return initialize(this);
     }
     return orElse();
   }
 }
 
-abstract class _Started implements ArticleEvent {
-  const factory _Started() = _$_Started;
+abstract class Initialize implements ArticleEvent {
+  const factory Initialize() = _$Initialize;
 }
 
 /// @nodoc
@@ -180,6 +181,8 @@ abstract class _$$SearchArticleCopyWith<$Res> {
   factory _$$SearchArticleCopyWith(
           _$SearchArticle value, $Res Function(_$SearchArticle) then) =
       __$$SearchArticleCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String query});
 }
 
 /// @nodoc
@@ -189,54 +192,78 @@ class __$$SearchArticleCopyWithImpl<$Res>
   __$$SearchArticleCopyWithImpl(
       _$SearchArticle _value, $Res Function(_$SearchArticle) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? query = null,
+  }) {
+    return _then(_$SearchArticle(
+      query: null == query
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$SearchArticle implements SearchArticle {
-  const _$SearchArticle();
+  const _$SearchArticle({required this.query});
+
+  @override
+  final String query;
 
   @override
   String toString() {
-    return 'ArticleEvent.searchArticle()';
+    return 'ArticleEvent.searchArticle(query: $query)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SearchArticle);
+        (other.runtimeType == runtimeType &&
+            other is _$SearchArticle &&
+            (identical(other.query, query) || other.query == query));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, query);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchArticleCopyWith<_$SearchArticle> get copyWith =>
+      __$$SearchArticleCopyWithImpl<_$SearchArticle>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function() searchArticle,
+    required TResult Function() initialize,
+    required TResult Function(String query) searchArticle,
   }) {
-    return searchArticle();
+    return searchArticle(query);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function()? searchArticle,
+    TResult? Function()? initialize,
+    TResult? Function(String query)? searchArticle,
   }) {
-    return searchArticle?.call();
+    return searchArticle?.call(query);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? searchArticle,
+    TResult Function()? initialize,
+    TResult Function(String query)? searchArticle,
     required TResult orElse(),
   }) {
     if (searchArticle != null) {
-      return searchArticle();
+      return searchArticle(query);
     }
     return orElse();
   }
@@ -244,7 +271,7 @@ class _$SearchArticle implements SearchArticle {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(Initialize value) initialize,
     required TResult Function(SearchArticle value) searchArticle,
   }) {
     return searchArticle(this);
@@ -253,7 +280,7 @@ class _$SearchArticle implements SearchArticle {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(Initialize value)? initialize,
     TResult? Function(SearchArticle value)? searchArticle,
   }) {
     return searchArticle?.call(this);
@@ -262,7 +289,7 @@ class _$SearchArticle implements SearchArticle {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(Initialize value)? initialize,
     TResult Function(SearchArticle value)? searchArticle,
     required TResult orElse(),
   }) {
@@ -274,7 +301,12 @@ class _$SearchArticle implements SearchArticle {
 }
 
 abstract class SearchArticle implements ArticleEvent {
-  const factory SearchArticle() = _$SearchArticle;
+  const factory SearchArticle({required final String query}) = _$SearchArticle;
+
+  String get query;
+  @JsonKey(ignore: true)
+  _$$SearchArticleCopyWith<_$SearchArticle> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
