@@ -17,7 +17,7 @@ class ArticleBloc extends Bloc<ArticleEvent, ArticleState> {
   ArticleFunctions articleFun;
   ArticleBloc(this.articleFun) : super(ArticleState.initial()) {
    on<Initialize>((event, emit) {
-     return emit(state.copyWith(isLoading: true,articleList: []));
+     return emit(state.copyWith(isLoading: true,articleList: [],isError: false));
    });
    on<SearchArticle>((event, emit) async {
     log('Article Bloc called');
@@ -25,9 +25,13 @@ class ArticleBloc extends Bloc<ArticleEvent, ArticleState> {
     //    emit(state.copyWith(isLoading: false,articleList: state.articleList ));
     //    return;
     //  }
-     emit(state.copyWith(isLoading: true,articleList: []));
-     List<Datum> articleNewList = await articleFun.fetchArticleList(query: event.query);
-     return emit(state.copyWith(isLoading: false,articleList:articleNewList));
+     emit(state.copyWith(isLoading: true,articleList: state.articleList,isError: false));
+     List<Datum>? articleNewList = await articleFun.fetchArticleList(query: event.query);
+     if (articleNewList == null) {
+       return emit(state.copyWith(isLoading: false,articleList:[],isError: true));
+     }
+
+     return emit(state.copyWith(isLoading: false,articleList:articleNewList,isError: false));
    });
   }
 }

@@ -15,12 +15,14 @@ class ResultList extends StatelessWidget {
               strokeWidth: 2,
             ),
           );
-        } else if (state.articleList.isEmpty) {
+        }else if (state.isError) {
+          return const Center(child: Text('No Network',style: TextStyle(color: Colors.red),));
+        }
+         else if (state.articleList.isEmpty) {
           return const Center(child: Text('No Results'));
         }
-
         return Padding(
-          padding: const EdgeInsets.all(.0),
+          padding: const EdgeInsets.all(16.0),
           child: ListView.separated(
               itemBuilder: (context, index) {
                 final item = state.articleList[index];

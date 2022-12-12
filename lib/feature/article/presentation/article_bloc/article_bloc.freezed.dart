@@ -313,6 +313,7 @@ abstract class SearchArticle implements ArticleEvent {
 mixin _$ArticleState {
   List<Datum> get articleList => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  bool get isError => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ArticleStateCopyWith<ArticleState> get copyWith =>
@@ -325,7 +326,7 @@ abstract class $ArticleStateCopyWith<$Res> {
           ArticleState value, $Res Function(ArticleState) then) =
       _$ArticleStateCopyWithImpl<$Res, ArticleState>;
   @useResult
-  $Res call({List<Datum> articleList, bool isLoading});
+  $Res call({List<Datum> articleList, bool isLoading, bool isError});
 }
 
 /// @nodoc
@@ -343,6 +344,7 @@ class _$ArticleStateCopyWithImpl<$Res, $Val extends ArticleState>
   $Res call({
     Object? articleList = null,
     Object? isLoading = null,
+    Object? isError = null,
   }) {
     return _then(_value.copyWith(
       articleList: null == articleList
@@ -352,6 +354,10 @@ class _$ArticleStateCopyWithImpl<$Res, $Val extends ArticleState>
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isError: null == isError
+          ? _value.isError
+          : isError // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -365,7 +371,7 @@ abstract class _$$_ArticleStateCopyWith<$Res>
       __$$_ArticleStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Datum> articleList, bool isLoading});
+  $Res call({List<Datum> articleList, bool isLoading, bool isError});
 }
 
 /// @nodoc
@@ -381,6 +387,7 @@ class __$$_ArticleStateCopyWithImpl<$Res>
   $Res call({
     Object? articleList = null,
     Object? isLoading = null,
+    Object? isError = null,
   }) {
     return _then(_$_ArticleState(
       articleList: null == articleList
@@ -391,6 +398,10 @@ class __$$_ArticleStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isError: null == isError
+          ? _value.isError
+          : isError // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -399,7 +410,9 @@ class __$$_ArticleStateCopyWithImpl<$Res>
 
 class _$_ArticleState implements _ArticleState {
   const _$_ArticleState(
-      {required final List<Datum> articleList, required this.isLoading})
+      {required final List<Datum> articleList,
+      required this.isLoading,
+      required this.isError})
       : _articleList = articleList;
 
   final List<Datum> _articleList;
@@ -411,10 +424,12 @@ class _$_ArticleState implements _ArticleState {
 
   @override
   final bool isLoading;
+  @override
+  final bool isError;
 
   @override
   String toString() {
-    return 'ArticleState(articleList: $articleList, isLoading: $isLoading)';
+    return 'ArticleState(articleList: $articleList, isLoading: $isLoading, isError: $isError)';
   }
 
   @override
@@ -425,12 +440,13 @@ class _$_ArticleState implements _ArticleState {
             const DeepCollectionEquality()
                 .equals(other._articleList, _articleList) &&
             (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading));
+                other.isLoading == isLoading) &&
+            (identical(other.isError, isError) || other.isError == isError));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_articleList), isLoading);
+      const DeepCollectionEquality().hash(_articleList), isLoading, isError);
 
   @JsonKey(ignore: true)
   @override
@@ -442,12 +458,15 @@ class _$_ArticleState implements _ArticleState {
 abstract class _ArticleState implements ArticleState {
   const factory _ArticleState(
       {required final List<Datum> articleList,
-      required final bool isLoading}) = _$_ArticleState;
+      required final bool isLoading,
+      required final bool isError}) = _$_ArticleState;
 
   @override
   List<Datum> get articleList;
   @override
   bool get isLoading;
+  @override
+  bool get isError;
   @override
   @JsonKey(ignore: true)
   _$$_ArticleStateCopyWith<_$_ArticleState> get copyWith =>

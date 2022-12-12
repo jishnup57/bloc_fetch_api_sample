@@ -5,12 +5,17 @@ import 'package:bloc_project/feature/article/domain/article_services.dart';
 import 'package:bloc_project/feature/article/domain/model/search_result_model.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 @injectable
 class ArticleFunctions implements ArticleService{
   @override
-  Future<List<Datum>> fetchArticleList({required String query})async {
+  Future<List<Datum>?> fetchArticleList({required String query})async {
     log("clicked");
+    bool result = await InternetConnectionChecker().hasConnection;
+    if (!result) {
+      return null;
+    }
     try {
       final response = await Dio(BaseOptions()).get(
        'https://api.kodeco.com/api/contents'
